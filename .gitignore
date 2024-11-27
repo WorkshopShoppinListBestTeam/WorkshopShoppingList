@@ -1,0 +1,17 @@
+# Archivos generados por Xcode
+.DS_Store
+DerivedData/
+Build/
+
+# Configuración de usuario
+*.xcuserdata
+*.xcuserstate
+
+# Archivos de esquema compartidos
+xcshareddata/
+
+# Archivos relacionados con Cocoapods (si lo usas)
+Pods/
+
+# Archivos de Logs
+*.log
