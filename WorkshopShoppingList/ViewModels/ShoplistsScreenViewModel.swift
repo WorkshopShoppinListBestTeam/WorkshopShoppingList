@@ -43,4 +43,9 @@ class ShoplistsScreenViewModel: ObservableObject {
         return shoppingLists.contains(where: { $0.name == name })
     }
     
+    func duplicateList(_ shoppingList: ShoppingList) {
+        coreDataService.duplicateShoppingList(shoppingList)
+        fetchLists()
+    }
+    
 }

@@ -23,6 +23,10 @@ class ShoplistPageViewModel: ObservableObject {
             .sorted { $0.name ?? "" < $1.name ?? "" }
     }
     
+    func alphaOrderingItemsList(){
+        items.sort { $0.name ?? "" < $1.name ?? "" }
+    }
+    
     func addItem(name: String, quantity: Double, unit: MeasurementUnit) -> Bool {
         let doesNotContainItem = true
         guard !name.isEmpty, !items.contains(where: { $0.name == name }) else { return !doesNotContainItem }
@@ -48,6 +52,11 @@ class ShoplistPageViewModel: ObservableObject {
     
     func itemAlreadyExists(_ name: String) -> Bool {
         return items.contains(where: { $0.name == name })
+    }
+    
+    func deleteAllItems() {
+        coreDataService.deleteAllItems(from: shoppingList)
+            fetchItems()
     }
 }
 

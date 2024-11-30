@@ -83,6 +83,37 @@ class CoreDataService {
         saveContext()
     }
     
+    // Duplicate a shopping list
+    func duplicateShoppingList(_ shoppingList: ShoppingList) {
+        // Crear una nueva lista duplicada
+        let newList = ShoppingList(context: context)
+        newList.name = (shoppingList.name ?? "") + " (Копия)"
+        newList.createdAt = Date()
+        
+        // Copy items form original list to the new list
+        if let items = shoppingList.items as? Set<Item> {
+            for item in items {
+                let newItem = Item(context: context)
+                newItem.name = item.name
+                newItem.quantity = item.quantity
+                newItem.unit = item.unit
+                newItem.isPurchased = item.isPurchased
+                newList.addToItems(newItem)
+            }
+        }
+        saveContext()
+    }
+    
+    func deleteAllItems(from shoppingList: ShoppingList) {
+        guard let items = shoppingList.items as? Set<Item> else { return }
+        for item in items {
+            context.delete(item) // Eliminar cada item de la lista
+        }
+        shoppingList.items = nil // Limpiar la relación
+        saveContext()
+    }
+
+    
     // Save changes to the context
     private func saveContext() {
         if context.hasChanges {
