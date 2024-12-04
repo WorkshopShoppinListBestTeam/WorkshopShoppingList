@@ -6,22 +6,25 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ShoplistsScreen: View {
     @State private var showCreatingNewListSheet: Bool = false
+    @StateObject private var viewModel =  ShoplistsScreenViewModel()
     var body: some View {
-        VStack{
-            Spacer()
-            Button(action: {
-                showCreatingNewListSheet.toggle()
-            }){
-                Text("Добавить новый список")
+        Group{
+            if viewModel.shoppingLists.isEmpty{
+                EmptyShoppingListView(showCreatingNewListSheet: $showCreatingNewListSheet)
             }
-            .frame(width: .infinity, height: 50)
-            .padding(.horizontal, 16)
-            Spacer()
+            else{
+                ShoppinglistsListView(viewModel: viewModel)
+            }
         }
-        .shee
+
+        
+        .sheet(isPresented: $showCreatingNewListSheet){
+            NewShoppinglistView()
+        }
     }
 }
 #Preview {

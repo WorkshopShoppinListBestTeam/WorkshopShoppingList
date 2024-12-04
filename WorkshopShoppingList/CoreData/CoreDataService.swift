@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataService {
+final class CoreDataService {
     static let shared = CoreDataService()
     private let context = PersistenceController.shared.container.viewContext
     
@@ -112,7 +112,6 @@ class CoreDataService {
         shoppingList.items = nil // Limpiar la relación
         saveContext()
     }
-
     
     // Save changes to the context
     private func saveContext() {

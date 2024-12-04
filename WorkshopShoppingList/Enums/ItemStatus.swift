@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum ItemStatus: String, CaseIterable {
     case pending
     case purchased

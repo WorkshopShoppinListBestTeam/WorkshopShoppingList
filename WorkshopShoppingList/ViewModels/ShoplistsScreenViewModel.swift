@@ -6,11 +6,9 @@
 //
 
 import Foundation
-
-import Foundation
 import Combine
 
-class ShoplistsScreenViewModel: ObservableObject {
+final class ShoplistsScreenViewModel: ObservableObject {
     @Published private(set) var shoppingLists: [ShoppingList] = []
     private let coreDataService = CoreDataService.shared
     
@@ -47,5 +45,4 @@ class ShoplistsScreenViewModel: ObservableObject {
         coreDataService.duplicateShoppingList(shoppingList)
         fetchLists()
     }
-    
 }

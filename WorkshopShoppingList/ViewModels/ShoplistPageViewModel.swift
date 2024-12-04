@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class ShoplistPageViewModel: ObservableObject {
+final class ShoplistPageViewModel: ObservableObject {
     @Published private(set) var items: [Item] = []
     private let shoppingList: ShoppingList
     private let coreDataService = CoreDataService.shared
@@ -56,10 +56,9 @@ class ShoplistPageViewModel: ObservableObject {
     
     func deleteAllItems() {
         coreDataService.deleteAllItems(from: shoppingList)
-            fetchItems()
+        fetchItems()
     }
 }
-
 
 extension ShoppingList {
     var itemsArray: [Item] {

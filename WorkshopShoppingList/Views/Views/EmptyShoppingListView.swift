@@ -6,13 +6,27 @@
 //
 
 import SwiftUI
+import Combine
 
 struct EmptyShoppingListView: View {
+    @Binding var showCreatingNewListSheet: Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Spacer()
+            Button(action: {
+                showCreatingNewListSheet.toggle()
+            }){
+                Text("Добавить новый список")
+            }
+            .frame(width: 343, height: 50)
+            .background(Color.pink.opacity(0.60))
+            .cornerRadius(14)
+            .padding(.horizontal, 16)
+            Spacer()
+        }
     }
 }
 
 #Preview {
-    EmptyShoppingListView()
+    EmptyShoppingListView(showCreatingNewListSheet: .constant(false))
 }

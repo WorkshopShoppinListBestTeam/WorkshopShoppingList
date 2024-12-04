@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct SplashView: View {
     @State private var showMainScreen = false
