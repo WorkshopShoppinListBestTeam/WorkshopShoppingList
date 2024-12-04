@@ -39,7 +39,7 @@ struct SplashView: View {
                 Spacer()
                 
                 Text("Добро пожаловать в Список покупок")
-                    .font(.title2)
+                    .font(AppConstants.Fonts.header2)
                     .fontWeight(.bold)
                     .foregroundColor(.black.opacity(0.75))
                     .padding(.horizontal, 16)
