@@ -27,38 +27,21 @@ struct SplashView: View {
     
     private var splashContent: some View {
         ZStack {
-            Color(.pink.opacity(0.30)).edgesIgnoringSafeArea(.all)
-            
+            Color(.backgroundPrimary).edgesIgnoringSafeArea(.all)
             VStack {
-                Spacer()
-                
-                Image(systemName: "person.crop.circle.fill")
+                Image(.logo)
                     .resizable()
-                    .frame(width: 150, height: 150)
-                  
-                Spacer()
-                
-                Text("Добро пожаловать в Список покупок")
-                    .font(AppConstants.Fonts.header2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black.opacity(0.75))
-                    .padding(.horizontal, 16)
-                    .frame(alignment: .center)
-                
-                Text("Создавайте списки, добавляйте товары, отмечайте, что уже куплено")
-                    .font(.title3)
-                    .fontWeight(.regular)
-                    .foregroundColor(.black.opacity(0.50))
-                    .padding(.horizontal, 16)
-                
-                
-                Spacer()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.top, 18)
+                    .padding(.bottom, 44)
+                PlaceholderView(imageName: "StartScreenLight", mainMessage: AppConstants.General.logoMainMessage, subMessage: AppConstants.General.logoSubMessage)
+            
             }
-        }
+            }
     }
     
     func startSplash() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
             showMainScreen.toggle()
         }
     }

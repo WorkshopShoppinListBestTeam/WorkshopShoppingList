@@ -15,15 +15,15 @@ struct AppConstants {
     
     struct General {
         static let appName = "WorkshopShoppingList"
-        static let logoMainMessage = "Добро пожаловать в Список покупок"
+        static let logoMainMessage = "Добро пожаловать!"
         static let logoSubMessage = "Создавайте списки, добавляйте товары, отмечайте, что уже куплено"
         static let splashDuration: TimeInterval = 0.2
     }
     
     struct Fonts{
-         static let semiboldTextFontName = "SFProDisplay-Semibold"
-         static let regularTextFontName = "SFProDisplay-Regular"
-         static let boldTextFontName = "SFProDisplay-Bold"
+         static let semiboldTextFontName = "SFPro-Semibold"
+         static let regularTextFontName = "SFPro-Regular"
+         static let boldTextFontName = "SFPro-Bold"
         
         static let header1 = Font.custom(boldTextFontName, size: 34)
         static let header2 = Font.custom(semiboldTextFontName, size: 20)
