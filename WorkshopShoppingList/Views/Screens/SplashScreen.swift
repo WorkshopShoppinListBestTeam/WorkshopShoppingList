@@ -34,14 +34,14 @@ struct SplashView: View {
                     .aspectRatio(contentMode: .fit)
                     .padding(.top, 18)
                     .padding(.bottom, 44)
-                PlaceholderView(imageName: "StartScreenLight", mainMessage: AppConstants.General.logoMainMessage, subMessage: AppConstants.General.logoSubMessage)
+                PlaceholderView(imageName: "StartScreenLight", mainMessage: AppConstants.Texts.splashScreenMainMessage, subMessage: AppConstants.Texts.splashScreenSubMessage)
             
             }
             }
     }
     
     func startSplash() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             showMainScreen.toggle()
         }
     }

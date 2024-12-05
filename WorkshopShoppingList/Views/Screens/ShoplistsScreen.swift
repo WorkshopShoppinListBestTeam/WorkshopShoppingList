@@ -12,7 +12,17 @@ struct ShoplistsScreen: View {
     @State private var showCreatingNewListSheet: Bool = false
     @StateObject private var viewModel =  ShoplistsScreenViewModel()
     var body: some View {
-        Group{
+        VStack{
+            HStack{
+                Text(AppConstants.Texts.shpoListScreenTitle)
+                    .frame(alignment: .leading)
+                    .font(AppConstants.Fonts.header1)
+                    .tint(.textPrimary)
+                Spacer()
+            }
+            .padding(.bottom, 55)
+            .padding(.leading, 16)
+            
             if viewModel.shoppingLists.isEmpty{
                 EmptyShoppingListView(showCreatingNewListSheet: $showCreatingNewListSheet)
             }

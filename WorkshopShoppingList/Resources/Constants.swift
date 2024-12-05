@@ -12,12 +12,17 @@ import SwiftUI
 struct AppConstants {
     static var shared = AppConstants()
     private init(){}
-    
-    struct General {
-        static let appName = "WorkshopShoppingList"
-        static let logoMainMessage = "Добро пожаловать!"
-        static let logoSubMessage = "Создавайте списки, добавляйте товары, отмечайте, что уже куплено"
+    struct General{
         static let splashDuration: TimeInterval = 0.2
+    }
+    struct Texts {
+        static let appName = "WorkshopShoppingList"
+        
+        static let splashScreenMainMessage = "Добро пожаловать!"
+        static let splashScreenSubMessage = "Создавайте списки, добавляйте товары, отмечайте, что уже куплено"
+        static let shpoListScreenEmptyListMainMessage = "У вас пока нет списков"
+        static let shpoListScreenEmptyListSubMessage = "Нажмите на кнопку, чтобы создать свой первый список"
+        static let shpoListScreenTitle = "Мои списки"
     }
     
     struct Fonts{
