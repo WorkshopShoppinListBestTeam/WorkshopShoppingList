@@ -17,7 +17,6 @@ struct AppConstants {
     }
     struct Texts {
         static let appName = "WorkshopShoppingList"
-        
         static let splashScreenMainMessage = "Добро пожаловать!"
         static let splashScreenSubMessage = "Создавайте списки, добавляйте товары, отмечайте, что уже куплено"
         static let shpoListScreenEmptyListMainMessage = "У вас пока нет списков"
@@ -40,9 +39,9 @@ struct AppConstants {
     }
     
     struct Fonts{
-         static let semiboldTextFontName = "SFPro-Semibold"
-         static let regularTextFontName = "SFPro-Regular"
-         static let boldTextFontName = "SFPro-Bold"
+        static let semiboldTextFontName = "SFPro-Semibold"
+        static let regularTextFontName = "SFPro-Regular"
+        static let boldTextFontName = "SFPro-Bold"
         
         static let header1 = Font.custom(boldTextFontName, size: 34)
         static let header2 = Font.custom(semiboldTextFontName, size: 20)
@@ -58,4 +57,24 @@ struct AppConstants {
         static let plusSymbol = "plus"
         static let settingsSymbol = "ellipsis.circle"
     }
+    
+    
+    struct ImageNames{
+        static var logoImageName = "Logo"
+        static var NoResultsFound : String { themedImageName(light: "NoResultsFoundScreenLight", dark: "NoResultsFoundScreenDark")
+        }
+        static var ProductListScreen : String { themedImageName(light: "ProductListScreenLight", dark: "ProductListScreenDark")
+        }
+        static var ShoppingListScreen : String { themedImageName(light: "ShoppingListScreenLight", dark: "ShoppingListScreenDark")
+        }
+        static var StartScreen : String { themedImageName(light: "StartScreenLight", dark: "StartScreenDark")
+        }
+        
+        private static func themedImageName(light: String, dark: String) -> String {
+            let isDarkMode = UITraitCollection.current.userInterfaceStyle == .dark
+            return isDarkMode ? dark : light
+        }
+    }
+    
+    
 }

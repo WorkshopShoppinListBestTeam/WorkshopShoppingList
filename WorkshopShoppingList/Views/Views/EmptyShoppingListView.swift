@@ -12,7 +12,7 @@ struct EmptyShoppingListView: View {
     @Binding var showCreatingNewListSheet: Bool
     var body: some View {
         VStack{
-            PlaceholderView(imageName: "ShoppingListScreenLight",
+            PlaceholderView(imageName: AppConstants.ImageNames.ShoppingListScreen,
                             mainMessage: AppConstants.Texts.shpoListScreenEmptyListMainMessage,
                             subMessage: AppConstants.Texts.shpoListScreenEmptyListSubMessage
             )
@@ -31,8 +31,9 @@ struct EmptyShoppingListView: View {
             .background(.accentPrimary)
             .cornerRadius(14)
             .padding(.horizontal, 16)
-            Spacer()
+            .padding(.bottom, 16)
         }
+        .animatedOnAppear()
     }
 }
 

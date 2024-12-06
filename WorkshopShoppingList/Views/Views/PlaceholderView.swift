@@ -46,6 +46,7 @@ struct PlaceholderView: View {
             
             Spacer()
         }
+        .animatedOnAppear()
     }
 }
 

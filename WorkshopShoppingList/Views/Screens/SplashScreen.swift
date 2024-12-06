@@ -29,12 +29,12 @@ struct SplashView: View {
         ZStack {
             Color(.backgroundPrimary).edgesIgnoringSafeArea(.all)
             VStack {
-                Image(.logo)
+                Image(AppConstants.ImageNames.logoImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(.top, 18)
                     .padding(.bottom, 44)
-                PlaceholderView(imageName: "StartScreenLight", mainMessage: AppConstants.Texts.splashScreenMainMessage, subMessage: AppConstants.Texts.splashScreenSubMessage)
+                PlaceholderView(imageName: AppConstants.ImageNames.StartScreen, mainMessage: AppConstants.Texts.splashScreenMainMessage, subMessage: AppConstants.Texts.splashScreenSubMessage)
             }
         }
     }

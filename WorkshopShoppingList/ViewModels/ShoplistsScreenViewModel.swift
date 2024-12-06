@@ -45,4 +45,9 @@ final class ShoplistsScreenViewModel: ObservableObject {
         coreDataService.duplicateShoppingList(shoppingList)
         fetchLists()
     }
+    
+    func filteredShoppingLists(for query: String) -> [ShoppingList] {
+        guard !query.isEmpty else { return shoppingLists }
+        return shoppingLists.filter { $0.name?.localizedCaseInsensitiveContains(query) == true }
+    }
 }
