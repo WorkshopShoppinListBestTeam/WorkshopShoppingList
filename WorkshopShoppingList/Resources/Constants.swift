@@ -23,6 +23,20 @@ struct AppConstants {
         static let shpoListScreenEmptyListMainMessage = "У вас пока нет списков"
         static let shpoListScreenEmptyListSubMessage = "Нажмите на кнопку, чтобы создать свой первый список"
         static let shpoListScreenTitle = "Мои списки"
+        static let addListButtonText = "Добавить список"
+        static let searchTextPlaceholder = "Поиск"
+        static let cancelSearchText = "Отмена"
+        static let cancelButtonText = "Отменить"
+        static let addButtonText = "Добавить"
+        static let newListSheetTitleText = "Новый список"
+        static let newListSheetPlaceholderText = "Название"
+        static let noResultFoundMainText = "Мы не смогли найти то, что вы искали"
+        static let noResultFoundSubText = "Попробуйте изменить запрос или проверить написание"
+        static let iconsSheetTitle = "Иконка"
+        static let backNavigationButtonText = "Списки"
+        static let nameListLabelText = "Название"
+        static let amountListLabelText = "Количество"
+        static let measurementListLabelText = "Измерение"
     }
     
     struct Fonts{
@@ -37,5 +51,11 @@ struct AppConstants {
         static let smallTextBody15 = Font.custom(semiboldTextFontName, size: 15)
         static let footnote = Font.custom(regularTextFontName, size: 13)
         static let caption = Font.custom(regularTextFontName, size: 12)
+    }
+    
+    struct SymbolsName {
+        static let magnifyingGlassSymbol = "magnifyingglass"
+        static let plusSymbol = "plus"
+        static let settingsSymbol = "ellipsis.circle"
     }
 }
