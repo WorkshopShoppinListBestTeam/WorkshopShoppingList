@@ -12,6 +12,7 @@ struct TextFieldPlaceHolderTextModifier: ViewModifier {
     var placeholder: String
     var text: Binding<String>
     var placeholderTextColor: Color
+    var horizontalPadding: CGFloat
 
     func body(content: Content) -> some View {
         ZStack(alignment: .leading) {
@@ -19,8 +20,10 @@ struct TextFieldPlaceHolderTextModifier: ViewModifier {
                 Text(placeholder)
                     .font(AppConstants.Fonts.largeTextBody17)
                     .foregroundColor(placeholderTextColor)
+                    
             }
             content
         }
+        .padding(.horizontal, horizontalPadding)
     }
 }

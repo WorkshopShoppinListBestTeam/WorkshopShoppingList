@@ -29,6 +29,7 @@ struct AppConstants {
         static let addButtonText = "Добавить"
         static let newListSheetTitleText = "Новый список"
         static let newListSheetPlaceholderText = "Название"
+        static let newListSheetDuplicatedNameAlertMessage = "Список с таким названием уже существует"
         static let noResultFoundMainText = "Мы не смогли найти то, что вы искали"
         static let noResultFoundSubText = "Попробуйте изменить запрос или проверить написание"
         static let iconsSheetTitle = "Иконка"

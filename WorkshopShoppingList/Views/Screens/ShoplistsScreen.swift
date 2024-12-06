@@ -68,7 +68,7 @@ struct ShoplistsScreen: View {
         }
     }
         .sheet(isPresented: $showCreatingNewListSheet){
-            NewShoppinglistView()
+            NewShoppinglistView(viewModel: viewModel, isViewPresented: $showCreatingNewListSheet)
         }
         .ignoresSafeArea(.keyboard)
         .animatedOnAppear()
@@ -121,7 +121,7 @@ private var searchBar: some View {
             TextField("", text: $searchText)
                 .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.searchTextPlaceholder,
                                                            text: $searchText,
-                                                           placeholderTextColor: .textSecondary)
+                                                           placeholderTextColor: .textSecondary, horizontalPadding: 0)
                 )
                 .focused($isSearchBarFocused)
                 .padding(.vertical, 8)
