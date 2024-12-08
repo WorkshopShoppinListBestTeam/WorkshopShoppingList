@@ -40,7 +40,7 @@ struct SplashView: View {
     }
     
     func startSplash() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             showMainScreen.toggle()
         }
     }
