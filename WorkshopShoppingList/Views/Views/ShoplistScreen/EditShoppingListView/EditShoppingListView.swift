@@ -1,16 +1,16 @@
 //
-//  NewShoppinglistView.swift
+//  EditShoppingListView.swift
 //  WorkshopShoppingList
 //
-//  Created by Vladimir Vinakheras on 30.11.2024.
+//  Created by Vladimir Vinakheras on 07.12.2024.
 //
-
 import SwiftUI
 import Combine
 
-struct NewShoppinglistView: View {
+struct EditShoppinglistView: View {
     @ObservedObject var viewModel: ShoplistsScreenViewModel
     @FocusState private var isTextFieldFocused: Bool
+    @Binding var currentListName: String?
     @State private var listNewName: String = ""
     @Binding var isViewPresented: Bool
     @State private var isListNameValid: Bool = true
@@ -20,22 +20,31 @@ struct NewShoppinglistView: View {
             Color(.backgroundPrimary)
                 .ignoresSafeArea()
             VStack{
-                topBar
-               
+               topBar
+                HStack{
+                    Text(AppConstants.Texts.editListNameLabelText)
+                        .padding(.top, 24)
+                        .padding(.leading, 32)
+                    
+                    Spacer()
+                }
                 HStack{
                     TextField("", text: $listNewName)
-                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.nameListLabelText,
+                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: currentListName ?? "New name",
                                                                    text: $listNewName,
                                                                    placeholderTextColor: .textSecondary, horizontalPadding: 16)
                         )
-                        .keyboardType(.default) 
+                        .keyboardType(.default)
                         .focused($isTextFieldFocused)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 11)
                         
                 
                         
                         .onChange(of: listNewName){
-                            isListNameValid = !viewModel.shoppinglistAlreadyExists(listNewName)
+                            if listNewName != currentListName{
+                                isListNameValid = !viewModel.shoppinglistAlreadyExists(listNewName)
+                            }
+                            
                         }
                     if !listNewName.isEmpty {
                         Button(action: {
@@ -85,14 +94,14 @@ struct NewShoppinglistView: View {
             }
             .foregroundColor(.textSecondary)
             Spacer()
-            Text(AppConstants.Texts.newListSheetTitleText)
+            Text(AppConstants.Texts.editListNameSheetText)
                 .font(AppConstants.Fonts.largeTextLarge17)
             Spacer()
             Button(action: {
-                viewModel.addList(name: listNewName)
+                viewModel.renameList(currentName: currentListName ?? "No name", newName: listNewName)
                 isViewPresented.toggle()
             }) {
-                Text(AppConstants.Texts.addButtonText)
+                Text(AppConstants.Texts.readyButtonText)
                     .padding(.vertical,12)
                     .padding(.horizontal,16)
             }

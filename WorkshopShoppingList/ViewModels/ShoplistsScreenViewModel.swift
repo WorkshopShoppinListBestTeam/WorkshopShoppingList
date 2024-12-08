@@ -31,12 +31,15 @@ final class ShoplistsScreenViewModel: ObservableObject {
         fetchLists()
     }
     
-    func renameList(_ shoppingList: ShoppingList, newName: String) {
-        guard !newName.isEmpty else { return }
-        coreDataService.renameShoppingList(shoppingList, newName: newName)
-        fetchLists()
+    func renameList(currentName: String, newName: String) {
+        guard !newName.isEmpty, !shoppinglistAlreadyExists(newName) else { return }
+        
+        if let shoppingList = shoppingLists.first(where: { $0.name == currentName }) {
+            coreDataService.renameShoppingList(shoppingList, newName: newName)
+            fetchLists()
+        }
     }
-    
+
     func shoppinglistAlreadyExists(_ name: String) -> Bool {
         return shoppingLists.contains(where: { $0.name == name })
     }

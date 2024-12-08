@@ -15,6 +15,7 @@ struct ShoplistsScreen: View {
     @FocusState private var isSearchBarFocused: Bool
     @StateObject private var viewModel =  ShoplistsScreenViewModel()
     var body: some View {
+        NavigationView{
         VStack{
             ZStack {
                 if showSearchBar {
@@ -56,22 +57,24 @@ struct ShoplistsScreen: View {
                     }
                 }
             }
-        
-        if viewModel.shoppingLists.isEmpty{
-            if !(showSearchBar && !searchText.isEmpty){
-                EmptyShoppingListView(showCreatingNewListSheet: $showCreatingNewListSheet)
-                    .padding(.top, showSearchBar ? 108 : 0)
+            
+            if viewModel.shoppingLists.isEmpty{
+                if !(showSearchBar && !searchText.isEmpty){
+                    EmptyShoppingListView(showCreatingNewListSheet: $showCreatingNewListSheet)
+                        .padding(.top, showSearchBar ? 108 : 0)
+                }
+            }
+            else{
+                ShoppinglistsListView(viewModel: viewModel)
+                
             }
         }
-        else{
-            ShoppinglistsListView(viewModel: viewModel)
-        }
-    }
         .sheet(isPresented: $showCreatingNewListSheet){
             NewShoppinglistView(viewModel: viewModel, isViewPresented: $showCreatingNewListSheet)
         }
         .ignoresSafeArea(.keyboard)
         .animatedOnAppear()
+    }
 }
 
 
@@ -134,8 +137,9 @@ private var searchBar: some View {
                     searchText = ""
                 }) {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
+                        .foregroundColor(.extraTintSecondary)
                 }
+                .padding(.trailing, 16)
             }
         }
         .background(.backgroundSecondary)
