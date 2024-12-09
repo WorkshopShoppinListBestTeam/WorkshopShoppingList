@@ -42,7 +42,7 @@ struct ShoplistsScreen: View {
                             .tint(.textPrimary)
                         Spacer()
                     }
-                    .padding(.bottom, 55)
+                    .padding(.bottom, viewModel.shoppingLists.isEmpty ? 55 : 26)
                     .padding(.leading, 16)
                     .animation(.easeInOut(duration: 0.2), value: showSearchBar)
                 }
@@ -66,7 +66,6 @@ struct ShoplistsScreen: View {
             }
             else{
                 ShoppinglistsListView(viewModel: viewModel)
-                
             }
         }
         .sheet(isPresented: $showCreatingNewListSheet){
@@ -150,7 +149,7 @@ private var searchBar: some View {
             searchText = ""
             showSearchBar.toggle()
         }) {
-            Text(AppConstants.Texts.cancelSearchText)
+            Text(AppConstants.Texts.cancelText)
                 .foregroundColor(.textSecondary)
         }
     }

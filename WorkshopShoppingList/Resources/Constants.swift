@@ -19,12 +19,12 @@ struct AppConstants {
         static let appName = "WorkshopShoppingList"
         static let splashScreenMainMessage = "Добро пожаловать!"
         static let splashScreenSubMessage = "Создавайте списки, добавляйте товары, отмечайте, что уже куплено"
-        static let shpoListScreenEmptyListMainMessage = "У вас пока нет списков"
-        static let shpoListScreenEmptyListSubMessage = "Нажмите на кнопку, чтобы создать свой первый список"
+        static let shopListScreenEmptyListMainMessage = "У вас пока нет списков"
+        static let shopListScreenEmptyListSubMessage = "Нажмите на кнопку, чтобы создать свой первый список"
         static let shpoListScreenTitle = "Мои списки"
         static let addListButtonText = "Добавить список"
         static let searchTextPlaceholder = "Поиск"
-        static let cancelSearchText = "Отмена"
+        static let cancelText = "Отмена"
         static let cancelButtonText = "Отменить"
         static let addButtonText = "Добавить"
         static let readyButtonText = "Готово"
@@ -37,9 +37,26 @@ struct AppConstants {
         static let noResultFoundSubText = "Попробуйте изменить запрос или проверить написание"
         static let iconsSheetTitle = "Иконка"
         static let backNavigationButtonText = "Списки"
-        static let nameListLabelText = "Название"
+        static let nameLabelText = "Название"
         static let amountListLabelText = "Количество"
         static let measurementListLabelText = "Измерение"
+        static let alertTitleText = "Удалить список"
+        static let alertConfimationText: (String) -> String = { listName in
+           return "Удалить список «\(listName)» ? Все данные в списке будут потеряны."
+        }
+        
+        static let deleteButtonText = "Удалить"
+        static let renameButtonText = "Переименовать"
+        static let duplicateButtonText = "Дублировать"
+        static let itemScreenEmptyListMainMessage = "В списке покупок пока пусто"
+        static let itemScreenEmptyListSubMessage = "Нажмите на +, чтобы добавить товары"
+        
+        static let newItemSheetPlaceholderNameText = "Товар"
+        static let newItemSheetPlaceholderQuantityText = "0"
+        static let newItemSheetPlaceholderMeasurmentUnitText = "шт"
+        static let newItemSheetTitleText = "Новый товар"
+        
+        
     }
     
     struct Fonts{

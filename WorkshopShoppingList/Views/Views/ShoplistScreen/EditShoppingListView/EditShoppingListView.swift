@@ -37,14 +37,11 @@ struct EditShoppinglistView: View {
                         .keyboardType(.default)
                         .focused($isTextFieldFocused)
                         .padding(.vertical, 11)
-                        
-                
-                        
+                        .autocorrectionDisabled(true)
                         .onChange(of: listNewName){
                             if listNewName != currentListName{
                                 isListNameValid = !viewModel.shoppinglistAlreadyExists(listNewName)
                             }
-                            
                         }
                     if !listNewName.isEmpty {
                         Button(action: {

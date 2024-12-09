@@ -13,15 +13,15 @@ struct EmptyShoppingListView: View {
     var body: some View {
         VStack{
             PlaceholderView(imageName: AppConstants.ImageNames.ShoppingListScreen,
-                            mainMessage: AppConstants.Texts.shpoListScreenEmptyListMainMessage,
-                            subMessage: AppConstants.Texts.shpoListScreenEmptyListSubMessage
+                            mainMessage: AppConstants.Texts.shopListScreenEmptyListMainMessage,
+                            subMessage: AppConstants.Texts.shopListScreenEmptyListSubMessage
             )
             Spacer()
             Button(action: {
                 showCreatingNewListSheet.toggle()
             }){
                 Spacer()
-                Text("Добавить список")
+                Text(AppConstants.Texts.addListButtonText)
                     .font(AppConstants.Fonts.largeTextBody17)
                     .tracking(-0.43)
                     .tint(.textTetriary)

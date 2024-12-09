@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class ShoplistPageViewModel: ObservableObject {
+final class ItemsScreenViewModel: ObservableObject {
     @Published private(set) var items: [Item] = []
     private let shoppingList: ShoppingList
     private let coreDataService = CoreDataService.shared
@@ -44,12 +44,7 @@ final class ShoplistPageViewModel: ObservableObject {
         coreDataService.editItem(item, name: name, quantity: quantity, unit: unit, isPurchased: isPurchased)
         fetchItems()
     }
-    
-    func moveItem(from sourceIndex: Int, to destinationIndex: Int) {
-        coreDataService.moveItem(in: shoppingList, from: sourceIndex, to: destinationIndex)
-        fetchItems()
-    }
-    
+        
     func itemAlreadyExists(_ name: String) -> Bool {
         return items.contains(where: { $0.name == name })
     }

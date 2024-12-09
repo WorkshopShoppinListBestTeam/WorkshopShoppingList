@@ -24,14 +24,14 @@ struct NewShoppinglistView: View {
                
                 HStack{
                     TextField("", text: $listNewName)
-                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.nameListLabelText,
+                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.nameLabelText,
                                                                    text: $listNewName,
                                                                    placeholderTextColor: .textSecondary, horizontalPadding: 16)
                         )
                         .keyboardType(.default) 
                         .focused($isTextFieldFocused)
                         .padding(.vertical, 8)
-                        
+                        .autocorrectionDisabled(true)
                 
                         
                         .onChange(of: listNewName){
