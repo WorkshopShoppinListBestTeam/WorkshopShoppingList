@@ -49,8 +49,16 @@ final class ShoplistsScreenViewModel: ObservableObject {
         fetchLists()
     }
     
-    func filteredShoppingLists(for query: String) -> [ShoppingList] {
-        guard !query.isEmpty else { return shoppingLists }
-        return shoppingLists.filter { $0.name?.localizedCaseInsensitiveContains(query) == true }
+    func filteringShoppingLists(for query: String) {
+        fetchLists()
+        guard !query.isEmpty else { return }
+        shoppingLists =  shoppingLists.filter { $0.name?.localizedCaseInsensitiveContains(query) == true }
+    }
+    
+    func removeAll(){
+        for shoppingList in shoppingLists {
+            coreDataService.deleteShoppingList(shoppingList)
+        }
+        fetchLists()
     }
 }

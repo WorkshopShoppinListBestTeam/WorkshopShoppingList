@@ -11,7 +11,7 @@ import Combine
 
 struct SplashView: View {
     @State private var showMainScreen = false
-    @State private var progressValue : TimeInterval = 0.2
+    @State private var progressValue : TimeInterval = 4
     var body: some View {
         Group{
             if !showMainScreen{

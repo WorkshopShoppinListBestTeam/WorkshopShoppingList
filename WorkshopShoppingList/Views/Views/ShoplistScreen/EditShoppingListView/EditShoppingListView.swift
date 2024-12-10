@@ -14,7 +14,7 @@ struct EditShoppinglistView: View {
     @State private var listNewName: String = ""
     @Binding var isViewPresented: Bool
     @State private var isListNameValid: Bool = true
-    
+
     var body: some View {
         ZStack{
             Color(.backgroundPrimary)
@@ -30,7 +30,7 @@ struct EditShoppinglistView: View {
                 }
                 HStack{
                     TextField("", text: $listNewName)
-                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: currentListName ?? "New name",
+                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: currentListName ?? AppConstants.Texts.newListSheetPlaceholderText,
                                                                    text: $listNewName,
                                                                    placeholderTextColor: .textSecondary, horizontalPadding: 16)
                         )
@@ -47,7 +47,7 @@ struct EditShoppinglistView: View {
                         Button(action: {
                             listNewName = ""
                         }) {
-                            Image(systemName: "xmark.circle.fill")
+                            Image(systemName: AppConstants.SymbolsName.xmarkCircleFill)
                                 .foregroundColor(.extraTintSecondary)
                         }
                         .padding(.horizontal, 16)

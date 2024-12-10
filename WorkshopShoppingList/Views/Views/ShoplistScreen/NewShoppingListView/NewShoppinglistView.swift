@@ -41,7 +41,7 @@ struct NewShoppinglistView: View {
                         Button(action: {
                             listNewName = ""
                         }) {
-                            Image(systemName: "xmark.circle.fill")
+                            Image(systemName: AppConstants.SymbolsName.xmarkCircleFill)
                                 .foregroundColor(.extraTintSecondary)
                         }
                         .padding(.horizontal, 16)

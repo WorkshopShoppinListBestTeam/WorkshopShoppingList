@@ -1,28 +1,28 @@
 //
-//  NewItemtView.swift
+//  EditItemView.swift
 //  WorkshopShoppingList
 //
-//  Created by Vladimir Vinakheras on 08.12.2024.
+//  Created by Vladimir Vinakheras on 09.12.2024.
 //
 
 import SwiftUI
 
-struct NewItemtView: View {
+
+struct EditItemView: View {
     @ObservedObject var viewModel: ItemsScreenViewModel
     @Binding var isViewPresented: Bool
-    @State private var isListNameValid: Bool = true
+    @Binding var currentItemName: String?
+    @State private var isItemNameValid: Bool = true
     @State private var itemNewName: String = ""
-    @State private var itemNewQuantity: Int = 0
+    @State private var itemNewQuantity = 0
     @State private var itemMeasurementUnit: MeasurementUnit = .pieces
     @State private var hasChangedMeasurementUnit: Bool = false
-    
     private var itemNewQuantityString: Binding<String> {
         Binding(
             get: { String(itemNewQuantity) },
             set: { itemNewQuantity = Int($0) ?? 0 }
         )
     }
-    
     
     var body: some View {
         ZStack{
@@ -39,9 +39,10 @@ struct NewItemtView: View {
                         
                         Spacer()
                     }
+                    
                     HStack{
                         TextField("", text: $itemNewName)
-                            .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.newItemSheetPlaceholderNameText,
+                            .modifier(TextFieldPlaceHolderTextModifier(placeholder: currentItemName ?? AppConstants.Texts.newItemSheetPlaceholderNameText,
                                                                        text: $itemNewName,
                                                                        placeholderTextColor: .textSecondary, horizontalPadding: 16)
                             )
@@ -49,9 +50,10 @@ struct NewItemtView: View {
                             .padding(.vertical, 11)
                             .autocorrectionDisabled(true)
                             .onChange(of: itemNewName){
-                                isListNameValid = !viewModel.itemAlreadyExists(itemNewName)
+                                if itemNewName != currentItemName{
+                                    isItemNameValid = !viewModel.itemAlreadyExists(itemNewName)
+                                }
                             }
-                        
                         if !itemNewName.isEmpty {
                             Button(action: {
                                 itemNewName = ""
@@ -62,18 +64,17 @@ struct NewItemtView: View {
                             .padding(.horizontal, 16)
                         }
                     }
-                    .background(isListNameValid ? .backgroundSecondary : .atentionSecondary)
+                    .background(isItemNameValid ? .backgroundSecondary : .atentionSecondary)
                     .cornerRadius(10)
                     .padding(.horizontal, 16)
-                    
                     
                     HStack{
                         Text(AppConstants.Texts.newListSheetDuplicatedNameAlertMessage)
                             .padding(.leading,32)
                             .font(AppConstants.Fonts.footnote)
                             .foregroundColor(.atentionPrimary)
-                            .opacity(isListNameValid ? 0 : 1)
-                            .animation(.easeInOut, value: isListNameValid)
+                            .opacity(isItemNameValid ? 0 : 1)
+                            .animation(.easeInOut, value: isItemNameValid)
                         Spacer()
                     }
                 }
@@ -91,7 +92,7 @@ struct NewItemtView: View {
                                 .padding(.horizontal, 16)
                             Spacer()
                         }
-        
+                        
                         //Group with textField and buttons
                         HStack{
                             HStack{
@@ -131,15 +132,11 @@ struct NewItemtView: View {
                             .background(.accentTetriary)
                             .cornerRadius(8)
                             .padding(.trailing, 16)
-                            
-                          
                         }
                         .frame(width: 200)
                         .background(.backgroundSecondary)
                         .cornerRadius(10)
                     }
-                    
-                    
                     //Measurement
                     VStack{
                         HStack{
@@ -154,7 +151,8 @@ struct NewItemtView: View {
                                 .font(AppConstants.Fonts.largeTextBody17)
                                 .foregroundColor(hasChangedMeasurementUnit ? .textPrimary : .extraTintTetriary)
                             
-                            Menu {
+                            Menu
+                            {
                                 ForEach(MeasurementUnit.allCases, id: \.rawValue) { unit in
                                     Button(action: {
                                         itemMeasurementUnit = unit
@@ -168,16 +166,16 @@ struct NewItemtView: View {
                                                 .foregroundColor(.textPrimary)
                                             Spacer()
                                             if unit == itemMeasurementUnit {
-                                                Image(systemName: "checkmark")
+                                                Image(systemName: AppConstants.SymbolsName.checkmark)
                                                     .foregroundColor(.textPrimary)
                                             }
                                         }
                                         
-                                       
+                                        
                                     }
                                 }
                             } label: {
-                                Image(systemName: "chevron.up.chevron.down")
+                                Image(systemName:AppConstants.SymbolsName.chevronUpChevronDown)
                                     .font(AppConstants.Fonts.largeTextBody17)
                                     .foregroundColor(hasChangedMeasurementUnit ? .textPrimary : .extraTintTetriary )
                             }
@@ -196,17 +194,21 @@ struct NewItemtView: View {
                 .cornerRadius(10)
                 
                 Spacer()
-                
-                
             }
             .ignoresSafeArea(.keyboard)
             .animatedOnAppear()
         }
         .presentationDetents([.fraction(0.5)])  //Размер на половин экрана
         .presentationDragIndicator(.hidden)
+        .onAppear(){
+            let newItem = viewModel.items.first { $0.name == self.currentItemName }
+            if let newItem = newItem{
+                
+                itemNewQuantity = Int(newItem.quantity)
+                itemMeasurementUnit = MeasurementUnit(rawValue: newItem.unit ?? MeasurementUnit.pieces.rawValue) ?? .pieces
+            }
+        }
     }
-    
-    
     
     private var topBar : some View{
         HStack{
@@ -219,19 +221,20 @@ struct NewItemtView: View {
             }
             .foregroundColor(.textSecondary)
             Spacer()
-            Text(AppConstants.Texts.newItemSheetTitleText)
+            Text(AppConstants.Texts.editListNameSheetText)
                 .font(AppConstants.Fonts.largeTextLarge17)
             Spacer()
             Button(action: {
-                viewModel.addItem(name: itemNewName, quantity: Double(itemNewQuantity), unit: itemMeasurementUnit)
+                viewModel.editItem(currentItemName: currentItemName,name: itemNewName, quantity: Double(itemNewQuantity), unit: itemMeasurementUnit, isPurchased: false)
+                
                 isViewPresented.toggle()
             }) {
-                Text(AppConstants.Texts.addButtonText)
+                Text(AppConstants.Texts.readyButtonText)
                     .padding(.vertical,12)
                     .padding(.horizontal,16)
             }
-            .disabled(!isListNameValid || itemNewName.isEmpty)
-            .foregroundColor( !isListNameValid || itemNewName.isEmpty ? .extraTintTetriary : .textSecondary)
+            .disabled(!isItemNameValid || itemNewName.isEmpty)
+            .foregroundColor( !isItemNameValid || itemNewName.isEmpty ? .extraTintTetriary : .textSecondary)
         }
         
     }

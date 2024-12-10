@@ -114,7 +114,6 @@ struct ShoppinglistsListView: View {
             }
         }
         .sheet(isPresented: $showEditShoppinlistSheet){
-            
             EditShoppinglistView(viewModel: viewModel, currentListName: $selectedListName, isViewPresented: $showEditShoppinlistSheet)
         }
         .alert(AppConstants.Texts.alertTitleText, isPresented: $showDeleteAlert, presenting: listToDelete) { item in

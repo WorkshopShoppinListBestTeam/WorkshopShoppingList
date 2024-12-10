@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class ItemsScreenViewModel: ObservableObject {
-    @Published private(set) var items: [Item] = []
+    @Published var items: [Item] = []
     private let shoppingList: ShoppingList
     private let coreDataService = CoreDataService.shared
     
@@ -20,11 +20,22 @@ final class ItemsScreenViewModel: ObservableObject {
     
     func fetchItems() {
         items = shoppingList.itemsArray
-            .sorted { $0.name ?? "" < $1.name ?? "" }
+        purchasedOrderingItemsList()
     }
     
     func alphaOrderingItemsList(){
         items.sort { $0.name ?? "" < $1.name ?? "" }
+    }
+    
+    func purchasedOrderingItemsList(){
+        items = items.sorted {
+            if $0.isPurchased != $1.isPurchased {
+                return !$0.isPurchased
+            }
+            let name1 = $0.name ?? ""
+            let name2 = $1.name ?? ""
+            return name1.localizedCaseInsensitiveCompare(name2) == .orderedAscending
+        }
     }
     
     func addItem(name: String, quantity: Double, unit: MeasurementUnit) -> Bool {
@@ -40,17 +51,36 @@ final class ItemsScreenViewModel: ObservableObject {
         fetchItems()
     }
     
-    func editItem(_ item: Item, name: String? = nil, quantity: Double? = nil, unit: MeasurementUnit? = nil, isPurchased: Bool? = nil) {
-        coreDataService.editItem(item, name: name, quantity: quantity, unit: unit, isPurchased: isPurchased)
-        fetchItems()
-    }
+    func editItem(currentItemName: String?, name: String, quantity: Double, unit: MeasurementUnit, isPurchased: Bool) {
+        if let item = items.first(where: { $0.name == currentItemName }) {
+            coreDataService.editItem(item, name: name, quantity: quantity, unit: unit, isPurchased: isPurchased)
+            fetchItems()
+        }
         
+    }
+    
     func itemAlreadyExists(_ name: String) -> Bool {
         return items.contains(where: { $0.name == name })
     }
     
     func deleteAllItems() {
         coreDataService.deleteAllItems(from: shoppingList)
+        fetchItems()
+    }
+    
+    func deleteAllBought(){
+        for item in items where item.isPurchased {
+            coreDataService.deleteItem(item)
+        }
+        fetchItems()
+    }
+    
+    func togglePurchased(for item: Item) {
+        if let index = items.firstIndex(where: { $0.name == item.name }) {
+            items[index].isPurchased.toggle()
+            print(items[index].isPurchased)
+            coreDataService.editItem(item, name: item.name, quantity: item.quantity, unit: MeasurementUnit(rawValue: item.unit ?? MeasurementUnit.pieces.rawValue ), isPurchased: item.isPurchased)
+        }
         fetchItems()
     }
 }
