@@ -17,10 +17,11 @@ struct ShoplistsScreen: View {
     @FocusState private var isSearchBarFocused: Bool
     @StateObject private var viewModel =  ShoplistsScreenViewModel()
     var body: some View {
-        ZStack{
-            Color(.backgroundPrimary)
-                .ignoresSafeArea()
-            NavigationView{
+        NavigationView{
+            ZStack{
+                Color(.backgroundPrimary)
+                    .ignoresSafeArea()
+                
                 VStack{
                     ZStack {
                         if showSearchBar {
@@ -78,16 +79,18 @@ struct ShoplistsScreen: View {
                 }
                 .ignoresSafeArea(.keyboard)
                 .animatedOnAppear()
+                
+            }
+            .alert(AppConstants.Texts.alertDeletingAllListsTitle, isPresented: $showDeleteAllAlert) {
+                Button(AppConstants.Texts.cancelText, role: .cancel) {}
+                Button(AppConstants.Texts.deleteButtonText, role: .destructive) {
+                    viewModel.removeAll()
+                }
+            } message: {
+                Text(AppConstants.Texts.alertDeletingAllListsMessage)
             }
         }
-        .alert(AppConstants.Texts.alertDeletingAllListsTitle, isPresented: $showDeleteAllAlert) {
-            Button(AppConstants.Texts.cancelText, role: .cancel) {}
-            Button(AppConstants.Texts.deleteButtonText, role: .destructive) {
-                viewModel.removeAll()
-            }
-        } message: {
-            Text(AppConstants.Texts.alertDeletingAllListsMessage)
-        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private var topBarWithSearch: some View {
