@@ -14,8 +14,6 @@ enum Appearance: String, CaseIterable, Identifiable {
     case dark
 
     var id: String { self.rawValue }
-    
-   
     var colorScheme: ColorScheme? {
         switch self {
         case .light: return .light

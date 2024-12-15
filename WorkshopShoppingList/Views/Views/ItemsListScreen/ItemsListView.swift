@@ -17,10 +17,9 @@ struct ItemsListView: View {
     var body: some View {
         List{
             ForEach(viewModel.items, id: \.self) { item in
-                let name = item.name ?? "Unamed item"
+                let name = item.name ?? AppConstants.Texts.unamedText
                 let quantity = Int(item.quantity)
                 let measurement = item.unit ?? MeasurementUnit.pieces.rawValue
-                
                 HStack {
                     Button(action: {
                         viewModel.togglePurchased(for: item)
@@ -37,6 +36,9 @@ struct ItemsListView: View {
                         .strikethrough(item.isPurchased)
                         .foregroundColor(.textPrimary)
                         .padding(.leading, 10)
+                        .lineLimit(2)
+                        .truncationMode(.tail)
+                                    
                     Spacer()
                     
                     if(quantity != 0){

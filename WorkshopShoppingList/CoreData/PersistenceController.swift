@@ -10,9 +10,7 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-    
     let container: NSPersistentContainer
-    
     init() {
         container = NSPersistentContainer(name: "ShoppingListModel")
         container.loadPersistentStores { _, error in

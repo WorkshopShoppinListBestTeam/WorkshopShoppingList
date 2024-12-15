@@ -39,6 +39,9 @@ struct EditShoppinglistView: View {
                         .padding(.vertical, 11)
                         .autocorrectionDisabled(true)
                         .onChange(of: listNewName){
+                            if listNewName.count > 70 {
+                                       listNewName = String(listNewName.prefix(70))
+                                   }
                             if listNewName != currentListName{
                                 isListNameValid = !viewModel.shoppinglistAlreadyExists(listNewName)
                             }
@@ -95,7 +98,7 @@ struct EditShoppinglistView: View {
                 .font(AppConstants.Fonts.largeTextLarge17)
             Spacer()
             Button(action: {
-                viewModel.renameList(currentName: currentListName ?? "No name", newName: listNewName)
+                viewModel.renameList(currentName: currentListName ?? AppConstants.Texts.unamedText, newName: listNewName)
                 isViewPresented.toggle()
             }) {
                 Text(AppConstants.Texts.readyButtonText)

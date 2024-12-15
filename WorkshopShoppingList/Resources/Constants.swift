@@ -16,6 +16,7 @@ struct AppConstants {
         static let splashDuration: TimeInterval = 0.2
     }
     struct Texts {
+        static let unamedText = "Unamed"
         static let appName = "WorkshopShoppingList"
         static let appearanceUserDefaultsKey = "appearance"
         static let userOrderingUserDefaultsKey = "userOrdering"
@@ -100,8 +101,10 @@ struct AppConstants {
     struct SymbolsName {
         static let magnifyingGlassSymbol = "magnifyingglass"
         static let plusSymbol = "plus"
+        static let minusSymbol = "minus"
         static let settingsSymbol = "ellipsis.circle"
-        static let chevronRigth = "chevron.right"
+        static let chevronRight = "chevron.right"
+        static let chevronLeft = "chevron.left"
         static let xmarkCircleFill = "xmark.circle.fill"
         static let sunMax = "sun.max"
         static let moon = "moon"
@@ -116,6 +119,8 @@ struct AppConstants {
         static let orderingByButton = "arrow.up.arrow.down"
         static let orderingByUser = "text.justify"
         static let orderingByAlphabet = "character"
+        static let docOnDoc = "doc.on.doc"
+        static let listBulletClipboard = "list.bullet.clipboard"
     }
     
     
@@ -142,5 +147,38 @@ struct AppConstants {
         }
     }
     
+    struct AppIcons {
+        static let listBulletClipboard = "list.bullet.clipboard"
+        static let gift = "gift"
+        static let dumbbell = "dumbbell"
+        static let paintPalette = "paintpalette"
+        static let house = "house"
+        static let graduationCap = "graduationcap"
+        static let crossCase = "cross.case"
+        static let tShirt = "tshirt"
+        static let pawPrint = "pawprint"
+        static let cart = "cart"
+        static let book = "book"
+        static let partyPopper = "party.popper"
+        static let wrenchAndScrewdriver = "wrench.and.screwdriver"
+        static let suitcaseRolling = "suitcase.rolling"
+        static let paperclip = "paperclip"
+        static let carrot = "carrot"
+        static let teddyBear = "teddybear"
+        static let heart = "heart"
+        static let forkKnifeCircle = "fork.knife.circle"
+        static let briefcase = "briefcase"
+        static let exclamationMark3 = "exclamationmark.3"
+        static let stroller = "stroller"
+        static let wineGlass = "wineglass"
+        static let handbag = "handbag"
+        static let cat = "cat"
+        static let camera = "camera"
+        static let car = "car"
+        static let appsIPad = "apps.ipad"
+        static let star = "star"
+        static let eyebrow = "eyebrow"
+    }
+
     
 }

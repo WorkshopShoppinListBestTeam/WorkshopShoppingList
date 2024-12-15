@@ -43,12 +43,17 @@ struct NewItemtView: View {
                         TextField("", text: $itemNewName)
                             .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.newItemSheetPlaceholderNameText,
                                                                        text: $itemNewName,
-                                                                       placeholderTextColor: .textSecondary, horizontalPadding: 16)
+                                                                       placeholderTextColor: .textSecondary,
+                                                                       horizontalPadding: 16)
                             )
                             .keyboardType(.default)
                             .padding(.vertical, 11)
                             .autocorrectionDisabled(true)
                             .onChange(of: itemNewName){
+                                if itemNewName.count > 70 {
+                                           itemNewName = String(itemNewName.prefix(70))
+                                       }
+                                
                                 isListNameValid = !viewModel.itemAlreadyExists(itemNewName)
                             }
                         
@@ -91,14 +96,14 @@ struct NewItemtView: View {
                                 .padding(.horizontal, 16)
                             Spacer()
                         }
-        
                         //Group with textField and buttons
                         HStack{
                             HStack{
                                 TextField("", text: itemNewQuantityString)
                                     .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.newItemSheetPlaceholderNameText,
-                                                                               text: itemNewQuantityString,
-                                                                               placeholderTextColor: .textSecondary, horizontalPadding: 16)
+                                        text: itemNewQuantityString,
+                                        placeholderTextColor: .textSecondary,
+                                        horizontalPadding: 16)
                                     )
                                     .frame(alignment: .center)
                                     .keyboardType(.numberPad)
@@ -110,7 +115,7 @@ struct NewItemtView: View {
                                 Button{
                                     itemNewQuantity = max(itemNewQuantity - 1, 0)
                                 } label: {
-                                    Image(systemName: "minus")
+                                    Image(systemName: AppConstants.SymbolsName.minusSymbol)
                                         .font(AppConstants.Fonts.largeTextBody17)
                                         .foregroundColor(.textTetriary)
                                         .padding(.horizontal, 14)
@@ -121,7 +126,7 @@ struct NewItemtView: View {
                                 Button{
                                     itemNewQuantity += 1
                                 }label: {
-                                    Image(systemName: "plus")
+                                    Image(systemName: AppConstants.SymbolsName.plusSymbol)
                                         .font(AppConstants.Fonts.largeTextBody17)
                                         .foregroundColor(.textTetriary)
                                         .padding(.horizontal, 14)
@@ -131,15 +136,11 @@ struct NewItemtView: View {
                             .background(.accentTetriary)
                             .cornerRadius(8)
                             .padding(.trailing, 16)
-                            
-                          
                         }
                         .frame(width: 200)
                         .background(.backgroundSecondary)
                         .cornerRadius(10)
                     }
-                    
-                    
                     //Measurement
                     VStack{
                         HStack{
@@ -168,7 +169,7 @@ struct NewItemtView: View {
                                                 .foregroundColor(.textPrimary)
                                             Spacer()
                                             if unit == itemMeasurementUnit {
-                                                Image(systemName: "checkmark")
+                                                Image(systemName: AppConstants.SymbolsName.checkmark)
                                                     .foregroundColor(.textPrimary)
                                             }
                                         }
@@ -177,7 +178,7 @@ struct NewItemtView: View {
                                     }
                                 }
                             } label: {
-                                Image(systemName: "chevron.up.chevron.down")
+                                Image(systemName: AppConstants.SymbolsName.chevronUpChevronDown)
                                     .font(AppConstants.Fonts.largeTextBody17)
                                     .foregroundColor(hasChangedMeasurementUnit ? .textPrimary : .extraTintTetriary )
                             }

@@ -1,5 +1,5 @@
 //
-//  ShoplistPageViewModel.swift
+//  ItemsScreenViewModel.swift
 //  WorkshopShoppingList
 //
 //  Created by Vladimir Vinakheras on 30.11.2024.
@@ -56,7 +56,6 @@ final class ItemsScreenViewModel: ObservableObject {
             coreDataService.editItem(item, name: name, quantity: quantity, unit: unit, isPurchased: isPurchased)
             fetchItems()
         }
-        
     }
     
     func itemAlreadyExists(_ name: String) -> Bool {

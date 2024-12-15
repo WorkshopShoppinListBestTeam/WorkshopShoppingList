@@ -25,16 +25,18 @@ struct NewShoppinglistView: View {
                 HStack{
                     TextField("", text: $listNewName)
                         .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.nameLabelText,
-                                                                   text: $listNewName,
-                                                                   placeholderTextColor: .textSecondary, horizontalPadding: 16)
+                            text: $listNewName,
+                            placeholderTextColor: .textSecondary,
+                            horizontalPadding: 16)
                         )
                         .keyboardType(.default) 
                         .focused($isTextFieldFocused)
                         .padding(.vertical, 8)
                         .autocorrectionDisabled(true)
-                
-                        
                         .onChange(of: listNewName){
+                            if listNewName.count > 70 {
+                                listNewName = String(listNewName.prefix(70))
+                                   }
                             isListNameValid = !viewModel.shoppinglistAlreadyExists(listNewName)
                         }
                     if !listNewName.isEmpty {
@@ -50,8 +52,7 @@ struct NewShoppinglistView: View {
                 .background(.backgroundSecondary)
                 .cornerRadius(10)
                 .padding(.horizontal, 16)
-            
-                
+    
                 HStack{
                     Text(AppConstants.Texts.newListSheetDuplicatedNameAlertMessage)
                         .padding(.leading,32)
@@ -70,10 +71,7 @@ struct NewShoppinglistView: View {
             }
             .animatedOnAppear()
         }
-        
     }
-    
-    
     private var topBar : some View{
         HStack{
             Button(action: {
@@ -99,9 +97,7 @@ struct NewShoppinglistView: View {
             .disabled(!isListNameValid || listNewName.isEmpty)
             .foregroundColor( !isListNameValid || listNewName.isEmpty ? .extraTintTetriary : .textSecondary)
         }
-    
     }
-    
 }
 
 #Preview {

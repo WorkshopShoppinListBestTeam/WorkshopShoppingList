@@ -17,15 +17,47 @@ struct ShoppinglistsListView: View {
     @State private var selectedListName: String?
     @State private var selectedEmojis: [String: String] = [:]
     @State private var listToDelete : ShoppingList?
+
     
-    
-    let emojis = ["list.bullet.clipboard", "gift", "dumbbell", "paintpalette", "house", "graduationcap", "cross.case", "tshirt", "pawprint", "cart", "book", "party.popper", "wrench.and.screwdriver", "suitcase.rolling", "paperclip", "carrot", "teddybear", "heart", "fork.knife.circle", "briefcase", "exclamationmark.3", "stroller", "wineglass", "handbag", "cat", "camera", "car", "apps.ipad", "star", "eyebrow"]
+    let emojis = [
+        AppConstants.AppIcons.listBulletClipboard,
+        AppConstants.AppIcons.gift,
+        AppConstants.AppIcons.dumbbell,
+        AppConstants.AppIcons.paintPalette,
+        AppConstants.AppIcons.house,
+        AppConstants.AppIcons.graduationCap,
+        AppConstants.AppIcons.crossCase,
+        AppConstants.AppIcons.tShirt,
+        AppConstants.AppIcons.pawPrint,
+        AppConstants.AppIcons.cart,
+        AppConstants.AppIcons.book,
+        AppConstants.AppIcons.partyPopper,
+        AppConstants.AppIcons.wrenchAndScrewdriver,
+        AppConstants.AppIcons.suitcaseRolling,
+        AppConstants.AppIcons.paperclip,
+        AppConstants.AppIcons.carrot,
+        AppConstants.AppIcons.teddyBear,
+        AppConstants.AppIcons.heart,
+        AppConstants.AppIcons.forkKnifeCircle,
+        AppConstants.AppIcons.briefcase,
+        AppConstants.AppIcons.exclamationMark3,
+        AppConstants.AppIcons.stroller,
+        AppConstants.AppIcons.wineGlass,
+        AppConstants.AppIcons.handbag,
+        AppConstants.AppIcons.cat,
+        AppConstants.AppIcons.camera,
+        AppConstants.AppIcons.car,
+        AppConstants.AppIcons.appsIPad,
+        AppConstants.AppIcons.star,
+        AppConstants.AppIcons.eyebrow
+    ]
+
     
     var body: some View {
         
         List{
             ForEach(viewModel.shoppingLists, id: \.name) { list in
-                let name = list.name ?? "Unnamed list"
+                let name = list.name ?? AppConstants.Texts.unamedText
                 
                 HStack(spacing: 8){
                     Button{
@@ -34,7 +66,7 @@ struct ShoppinglistsListView: View {
                             showSheet = true
                         }
                     } label: {
-                        Image(systemName: selectedEmojis[name] ?? "list.bullet.clipboard")
+                        Image(systemName: selectedEmojis[name] ?? AppConstants.SymbolsName.listBulletClipboard)
                             .frame(width: 44,height: 44)
                             .foregroundColor(.textTetriary)
                             .background(.accentPrimary)
@@ -47,6 +79,8 @@ struct ShoppinglistsListView: View {
                             .font(.headline)
                             .multilineTextAlignment(.leading)
                             .padding(.leading, 8)
+                            .lineLimit(2)
+                            .truncationMode(.tail)
                     }
                     Spacer()
                 }
@@ -62,43 +96,40 @@ struct ShoppinglistsListView: View {
                         selectedListName = list.name
                         showEditShoppinlistSheet.toggle()
                     }) {
-                        Label(AppConstants.Texts.renameButtonText, systemImage: "pencil")
+                        Label(AppConstants.Texts.renameButtonText, systemImage: AppConstants.SymbolsName.pencil)
                     }
                     Button(action: {
                         viewModel.duplicateList(list)
                     }) {
-                        Label(AppConstants.Texts.duplicateButtonText, systemImage: "doc.on.doc")
+                        Label(AppConstants.Texts.duplicateButtonText, systemImage: AppConstants.SymbolsName.docOnDoc)
                     }
                     Button(action: {
                         showDeleteAlert.toggle()
                         listToDelete = list
                     }) {
-                        Label(AppConstants.Texts.deleteButtonText, systemImage: "trash")
+                        Label(AppConstants.Texts.deleteButtonText, systemImage: AppConstants.SymbolsName.trash)
                     }
-                    
-                    
                 }
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button(role: .destructive, action: {
                         showDeleteAlert.toggle()
                         listToDelete = list
                     }) {
-                        Label("Delete", systemImage: "trash")
+                        Label(AppConstants.Texts.deleteButtonText, systemImage: AppConstants.SymbolsName.trash)
                     }
                     
                     Button(action: {
                         selectedListName = list.name
                         showEditShoppinlistSheet.toggle()
                     }) {
-                        Label("Edit", systemImage: "pencil")
+                        Label(AppConstants.Texts.editButtonText, systemImage: AppConstants.SymbolsName.pencil)
                     }
                     .tint(Color("ExtraTintSecondary"))
                 }
             }
-            
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
-            
+
         }
         .padding(.horizontal, 16)
         .listRowSpacing(8)
@@ -122,7 +153,7 @@ struct ShoppinglistsListView: View {
                 viewModel.deleteList(item)
             }
         } message: { item in
-            Text(AppConstants.Texts.alertConfimationText(item.name ?? "No name"))
+            Text(AppConstants.Texts.alertConfimationText(item.name ?? AppConstants.Texts.unamedText))
         }
     }
 }

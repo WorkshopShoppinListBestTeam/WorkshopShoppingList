@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AppearAnimationModifier: ViewModifier {
     @State private var isVisible = false
-
+    
     func body(content: Content) -> some View {
         content
             .opacity(isVisible ? 1 : 0)
@@ -18,10 +18,9 @@ struct AppearAnimationModifier: ViewModifier {
             .animation(.easeOut(duration: 0.4), value: isVisible)
             .onAppear {
                 isVisible = true
-            }
+        }
     }
 }
-
 
 extension View {
     func animatedOnAppear() -> some View {

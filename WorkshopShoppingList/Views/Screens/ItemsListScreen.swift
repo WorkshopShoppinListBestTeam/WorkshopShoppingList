@@ -27,7 +27,7 @@ struct ItemListScreen: View {
                 .ignoresSafeArea()
             VStack{
                 HStack{
-                    Text(shoppingList.name ?? "Unamed list")
+                    Text(shoppingList.name ?? AppConstants.Texts.unamedText)
                         .frame(alignment: .leading)
                         .font(AppConstants.Fonts.header1)
                         .tint(.textPrimary)
@@ -54,11 +54,10 @@ struct ItemListScreen: View {
                         dismiss()
                     }label:{
                         HStack{
-                            Image(systemName: "chevron.left")
+                            Image(systemName: AppConstants.SymbolsName.chevronLeft)
                                 .resizable()
                                 .frame(width: 12, height: 20)
                                 .padding(.vertical,12)
-                            
                                 .foregroundColor(.textSecondary)
                                 .fontWeight(.bold)
                             
@@ -127,7 +126,6 @@ struct ItemListScreen: View {
                             Label(AppConstants.Texts.orderByUser, image: AppConstants.ImageNames.Grabber)
                         }
                     }
-                    
                     Button(action: {
                         userOrdering = false
                         viewModel.alphaOrderingItemsList()
@@ -151,7 +149,6 @@ struct ItemListScreen: View {
                 }) {
                     Label(AppConstants.Texts.deleteAllItems, systemImage: AppConstants.SymbolsName.trash)
                 }
-                
             } label: {
                 Image(systemName: AppConstants.SymbolsName.settingsSymbol)
                     .resizable()

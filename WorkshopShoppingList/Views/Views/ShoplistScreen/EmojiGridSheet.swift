@@ -11,11 +11,9 @@ import SwiftUI
 struct EmojiGridSheet: View {
     let emojis: [String]
     let onEmojiSelected: (String) -> Void
-    
     let rows = [
         GridItem(.adaptive(minimum: 40))
     ]
-    
     var body: some View {
         VStack {
             HStack{
@@ -42,8 +40,8 @@ struct EmojiGridSheet: View {
                 Spacer()
             }
         }
-        .presentationDetents([.fraction(0.35)])  //Размер на половин экрана
-        .presentationDragIndicator(.visible)  //показывает полоску на верзный край sheet'а
+        .presentationDetents([.fraction(0.35)])  
+        .presentationDragIndicator(.visible)
     }
     
 }

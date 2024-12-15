@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct EditItemView: View {
     @ObservedObject var viewModel: ItemsScreenViewModel
     @Binding var isViewPresented: Bool
@@ -50,6 +49,9 @@ struct EditItemView: View {
                             .padding(.vertical, 11)
                             .autocorrectionDisabled(true)
                             .onChange(of: itemNewName){
+                                if itemNewName.count > 70 {
+                                           itemNewName = String(itemNewName.prefix(70))
+                                       }
                                 if itemNewName != currentItemName{
                                     isItemNameValid = !viewModel.itemAlreadyExists(itemNewName)
                                 }
@@ -111,7 +113,7 @@ struct EditItemView: View {
                                 Button{
                                     itemNewQuantity = max(itemNewQuantity - 1, 0)
                                 } label: {
-                                    Image(systemName: "minus")
+                                    Image(systemName: AppConstants.SymbolsName.minusSymbol)
                                         .font(AppConstants.Fonts.largeTextBody17)
                                         .foregroundColor(.textTetriary)
                                         .padding(.horizontal, 14)
@@ -122,7 +124,7 @@ struct EditItemView: View {
                                 Button{
                                     itemNewQuantity += 1
                                 }label: {
-                                    Image(systemName: "plus")
+                                    Image(systemName: AppConstants.SymbolsName.plusSymbol)
                                         .font(AppConstants.Fonts.largeTextBody17)
                                         .foregroundColor(.textTetriary)
                                         .padding(.horizontal, 14)
@@ -192,7 +194,6 @@ struct EditItemView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 32)
                 .cornerRadius(10)
-                
                 Spacer()
             }
             .ignoresSafeArea(.keyboard)
@@ -236,7 +237,6 @@ struct EditItemView: View {
             .disabled(!isItemNameValid || itemNewName.isEmpty)
             .foregroundColor( !isItemNameValid || itemNewName.isEmpty ? .extraTintTetriary : .textSecondary)
         }
-        
     }
 }
 

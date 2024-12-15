@@ -91,8 +91,7 @@ struct ShoplistsScreen: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-    
+    }    
     private var topBarWithSearch: some View {
         HStack(spacing: 0) {
             Spacer()
@@ -105,7 +104,6 @@ struct ShoplistsScreen: View {
                     .padding(12)
             }
             .tint(.textSecondary)
-            
             Button(action: {
                 showCreatingNewListSheet.toggle()
             }) {
@@ -115,34 +113,31 @@ struct ShoplistsScreen: View {
                     .padding(12)
             }
             .tint(.textSecondary)
-            
             Menu{
-                    Menu{
-                        Button(action: {
-                            appearance = .light
-                        }) {
-                            HStack{
-                                Label(AppConstants.Texts.lightThemeLabeltext, systemImage: AppConstants.SymbolsName.sunMax)
-                            }
-                        }
-                        
-                        Button(action: {
-                            appearance = .dark
-                        }) {
-                            HStack{
-                                Label(AppConstants.Texts.darkThemeLabeltext, systemImage: AppConstants.SymbolsName.moon)
-                            }
-                        }
-                    } label: {
-                        Label(AppConstants.Texts.themeLabelText, systemImage: AppConstants.SymbolsName.paintPalette)
-                    }
-                    
-                    Button(role: .destructive, action: {
-                        showDeleteAllAlert.toggle()
+                Menu{
+                    Button(action: {
+                        appearance = .light
                     }) {
-                        Label(AppConstants.Texts.deleteAll, systemImage: AppConstants.SymbolsName.trash)
+                        HStack{
+                            Label(AppConstants.Texts.lightThemeLabeltext, systemImage: AppConstants.SymbolsName.sunMax)
+                        }
                     }
+                    Button(action: {
+                        appearance = .dark
+                    }) {
+                        HStack{
+                            Label(AppConstants.Texts.darkThemeLabeltext, systemImage: AppConstants.SymbolsName.moon)
+                        }
+                    }
+                } label: {
+                    Label(AppConstants.Texts.themeLabelText, systemImage: AppConstants.SymbolsName.paintPalette)
+                }
                 
+                Button(role: .destructive, action: {
+                    showDeleteAllAlert.toggle()
+                }) {
+                    Label(AppConstants.Texts.deleteAll, systemImage: AppConstants.SymbolsName.trash)
+                }
             } label: {
                 Image(systemName: AppConstants.SymbolsName.settingsSymbol)
                     .resizable()
@@ -160,7 +155,6 @@ struct ShoplistsScreen: View {
                 Image(systemName: AppConstants.SymbolsName.magnifyingGlassSymbol)
                     .foregroundColor(.textSecondary)
                     .padding(.horizontal, 8)
-                
                 TextField("", text: $searchText)
                     .modifier(TextFieldPlaceHolderTextModifier(placeholder: AppConstants.Texts.searchTextPlaceholder,
                                                                text: $searchText,
@@ -187,8 +181,6 @@ struct ShoplistsScreen: View {
             .onChange(of: searchText){ newValue in
                 viewModel.filteringShoppingLists(for: newValue)
             }
-            
-            
             Button(action: {
                 searchText = ""
                 viewModel.fetchLists()
