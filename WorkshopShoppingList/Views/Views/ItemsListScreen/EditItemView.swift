@@ -56,11 +56,16 @@ struct EditItemView: View {
                                     isItemNameValid = !viewModel.itemAlreadyExists(itemNewName)
                                 }
                             }
+                            .onChange(of: itemNewQuantity){
+                                if itemNewQuantity > 99999 {
+                                    itemNewQuantity = 99999
+                                }
+                            }
                         if !itemNewName.isEmpty {
                             Button(action: {
                                 itemNewName = ""
                             }) {
-                                Image(systemName: "xmark.circle.fill")
+                                Image(systemName: AppConstants.SymbolsName.xmarkCircleFill)
                                     .foregroundColor(.extraTintSecondary)
                             }
                             .padding(.horizontal, 16)
@@ -204,7 +209,7 @@ struct EditItemView: View {
         .onAppear(){
             let newItem = viewModel.items.first { $0.name == self.currentItemName }
             if let newItem = newItem{
-                
+                itemNewName = newItem.name ?? AppConstants.Texts.unamedText
                 itemNewQuantity = Int(newItem.quantity)
                 itemMeasurementUnit = MeasurementUnit(rawValue: newItem.unit ?? MeasurementUnit.pieces.rawValue) ?? .pieces
             }

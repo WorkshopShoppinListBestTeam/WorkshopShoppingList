@@ -56,12 +56,17 @@ struct NewItemtView: View {
                                 
                                 isListNameValid = !viewModel.itemAlreadyExists(itemNewName)
                             }
+                            .onChange(of: itemNewQuantity){
+                                if itemNewQuantity > 99999 {
+                                    itemNewQuantity = 99999
+                                }
+                            }
                         
                         if !itemNewName.isEmpty {
                             Button(action: {
                                 itemNewName = ""
                             }) {
-                                Image(systemName: "xmark.circle.fill")
+                                Image(systemName: AppConstants.SymbolsName.xmarkCircleFill)
                                     .foregroundColor(.extraTintSecondary)
                             }
                             .padding(.horizontal, 16)

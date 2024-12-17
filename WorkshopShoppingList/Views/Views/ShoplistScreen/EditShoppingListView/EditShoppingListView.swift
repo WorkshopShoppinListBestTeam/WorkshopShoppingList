@@ -46,6 +46,7 @@ struct EditShoppinglistView: View {
                                 isListNameValid = !viewModel.shoppinglistAlreadyExists(listNewName)
                             }
                         }
+                    
                     if !listNewName.isEmpty {
                         Button(action: {
                             listNewName = ""
@@ -78,6 +79,9 @@ struct EditShoppinglistView: View {
                 isTextFieldFocused = true
             }
             .animatedOnAppear()
+        }
+        .onAppear{
+            listNewName = currentListName ?? AppConstants.Texts.unamedText
         }
         
     }
