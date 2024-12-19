@@ -99,7 +99,6 @@ struct NewItemtView: View {
                         HStack{
                             Text(AppConstants.Texts.amountListLabelText)
                                 .font(AppConstants.Fonts.largeTextLarge17)
-                                .padding(.horizontal, 16)
                             Spacer()
                         }
                         //Group with textField and buttons
@@ -112,10 +111,10 @@ struct NewItemtView: View {
                                         horizontalPadding: 16)
                                     )
                                     .frame(alignment: .center)
-                                    .frame(width: 100)
+                                    .frame(width: 80)
                                     .keyboardType(.numberPad)
                                     .padding(.vertical, 12)
-                                    .padding(.leading, 28)
+                                    .padding(.leading, 16)
                                     .autocorrectionDisabled(true)
                             }
                             HStack{
@@ -144,7 +143,7 @@ struct NewItemtView: View {
                             .cornerRadius(8)
                             .padding(.trailing, 16)
                         }
-                        .frame(width: 200)
+                        .frame(width: 224)
                         .background(.backgroundSecondary)
                         .cornerRadius(10)
                     }
@@ -191,6 +190,7 @@ struct NewItemtView: View {
                             }
                             Spacer()
                         }
+                        .frame(width: 150)
                         .padding(.vertical, 12)
                         .background(.backgroundSecondary)
                         .cornerRadius(10)
