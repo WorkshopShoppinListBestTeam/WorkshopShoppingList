@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45B53BEB2D08F1C200EE792A /* iCloudCDSyncManager in Frameworks */ = {isa = PBXBuildFile; productRef = 45B53BEA2D08F1C200EE792A /* iCloudCDSyncManager */; };
+		45B8D49F2D14582200923337 /* iCloudCDSyncManager in Frameworks */ = {isa = PBXBuildFile; productRef = 45B8D49E2D14582200923337 /* iCloudCDSyncManager */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B53BEB2D08F1C200EE792A /* iCloudCDSyncManager in Frameworks */,
+				45B8D49F2D14582200923337 /* iCloudCDSyncManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			);
 			name = WorkshopShoppingList;
 			packageProductDependencies = (
-				45B53BEA2D08F1C200EE792A /* iCloudCDSyncManager */,
+				45B8D49E2D14582200923337 /* iCloudCDSyncManager */,
 			);
 			productName = WorkshopShoppingList;
 			productReference = 45C6049D2CF7DF6600B49644 /* WorkshopShoppingList.app */;
@@ -114,7 +114,7 @@
 			mainGroup = 45C604942CF7DF6500B49644;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				45B53BE92D08F1C200EE792A /* XCRemoteSwiftPackageReference "iCloudCDSyncManager" */,
+				45B8D49D2D14582200923337 /* XCRemoteSwiftPackageReference "iCloudCDSyncManager" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 45C6049E2CF7DF6600B49644 /* Products */;
@@ -360,7 +360,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		45B53BE92D08F1C200EE792A /* XCRemoteSwiftPackageReference "iCloudCDSyncManager" */ = {
+		45B8D49D2D14582200923337 /* XCRemoteSwiftPackageReference "iCloudCDSyncManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/VladimirVinageras/iCloudCDSyncManager";
 			requirement = {
@@ -371,9 +371,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		45B53BEA2D08F1C200EE792A /* iCloudCDSyncManager */ = {
+		45B8D49E2D14582200923337 /* iCloudCDSyncManager */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 45B53BE92D08F1C200EE792A /* XCRemoteSwiftPackageReference "iCloudCDSyncManager" */;
+			package = 45B8D49D2D14582200923337 /* XCRemoteSwiftPackageReference "iCloudCDSyncManager" */;
 			productName = iCloudCDSyncManager;
 		};
 /* End XCSwiftPackageProductDependency section */

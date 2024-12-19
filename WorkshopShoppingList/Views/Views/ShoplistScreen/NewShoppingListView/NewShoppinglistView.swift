@@ -17,7 +17,7 @@ struct NewShoppinglistView: View {
     
     var body: some View {
         ZStack{
-            Color(.backgroundPrimary)
+            Color(.backgroundTetriary)
                 .ignoresSafeArea()
             VStack{
                 topBar
@@ -33,6 +33,7 @@ struct NewShoppinglistView: View {
                         .focused($isTextFieldFocused)
                         .padding(.vertical, 8)
                         .autocorrectionDisabled(true)
+                        .tint(.textSecondary)
                         .onChange(of: listNewName){
                             if listNewName.count > 70 {
                                 listNewName = String(listNewName.prefix(70))
@@ -49,7 +50,7 @@ struct NewShoppinglistView: View {
                         .padding(.horizontal, 16)
                     }
                 }
-                .background(.backgroundSecondary)
+                .background(isListNameValid ? .backgroundSecondary : .atentionSecondary)
                 .cornerRadius(10)
                 .padding(.horizontal, 16)
     

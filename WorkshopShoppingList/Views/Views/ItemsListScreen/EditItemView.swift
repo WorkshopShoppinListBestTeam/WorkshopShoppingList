@@ -48,6 +48,7 @@ struct EditItemView: View {
                             .keyboardType(.default)
                             .padding(.vertical, 11)
                             .autocorrectionDisabled(true)
+                            .tint(.textSecondary)
                             .onChange(of: itemNewName){
                                 if itemNewName.count > 70 {
                                            itemNewName = String(itemNewName.prefix(70))
@@ -113,6 +114,7 @@ struct EditItemView: View {
                                     .padding(.vertical, 12)
                                     .padding(.leading, 16)
                                     .autocorrectionDisabled(true)
+                                    .tint(.textSecondary)
                             }
                             HStack{
                                 Button{

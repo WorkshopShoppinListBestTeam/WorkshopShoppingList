@@ -49,6 +49,7 @@ struct NewItemtView: View {
                             .keyboardType(.default)
                             .padding(.vertical, 11)
                             .autocorrectionDisabled(true)
+                            .tint(.textSecondary)
                             .onChange(of: itemNewName){
                                 if itemNewName.count > 70 {
                                            itemNewName = String(itemNewName.prefix(70))
@@ -111,9 +112,10 @@ struct NewItemtView: View {
                                         horizontalPadding: 16)
                                     )
                                     .frame(alignment: .center)
+                                    .frame(width: 100)
                                     .keyboardType(.numberPad)
                                     .padding(.vertical, 12)
-                                    .padding(.leading, 16)
+                                    .padding(.leading, 28)
                                     .autocorrectionDisabled(true)
                             }
                             HStack{

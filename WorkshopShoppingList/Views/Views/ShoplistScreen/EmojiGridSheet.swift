@@ -35,13 +35,12 @@ struct EmojiGridSheet: View {
                         }
                     }
                 }
-                .padding(.horizontal, 26)
+                .padding(.horizontal, 16)
                 
                 Spacer()
             }
         }
-        .presentationDetents([.fraction(0.35)])  
-        .presentationDragIndicator(.visible)
+        .presentationDetents([.fraction(0.4)])
     }
     
 }

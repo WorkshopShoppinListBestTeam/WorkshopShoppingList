@@ -49,7 +49,15 @@ struct ShoppinglistsListView: View {
         AppConstants.AppIcons.car,
         AppConstants.AppIcons.appsIPad,
         AppConstants.AppIcons.star,
-        AppConstants.AppIcons.eyebrow
+        AppConstants.AppIcons.eyebrow,
+        AppConstants.AppIcons.dog,
+        AppConstants.AppIcons.desktop,
+        AppConstants.AppIcons.brush,
+        AppConstants.AppIcons.cabinet,
+        AppConstants.AppIcons.bed,
+        AppConstants.AppIcons.smile,
+        AppConstants.AppIcons.basket
+    
     ]
 
     
@@ -91,6 +99,7 @@ struct ShoppinglistsListView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 0.33)
                 )
+                .listRowBackground(Color.clear)
                 .contextMenu {
                     Button(action: {
                         selectedListName = list.name
@@ -102,12 +111,14 @@ struct ShoppinglistsListView: View {
                         viewModel.duplicateList(list)
                     }) {
                         Label(AppConstants.Texts.duplicateButtonText, systemImage: AppConstants.SymbolsName.docOnDoc)
+                       
                     }
-                    Button(action: {
+                    Button(role : .destructive){
                         showDeleteAlert.toggle()
                         listToDelete = list
-                    }) {
+                    }label: {
                         Label(AppConstants.Texts.deleteButtonText, systemImage: AppConstants.SymbolsName.trash)
+
                     }
                 }
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {

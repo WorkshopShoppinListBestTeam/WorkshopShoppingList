@@ -30,7 +30,7 @@ struct EditShoppinglistView: View {
                 }
                 HStack{
                     TextField("", text: $listNewName)
-                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: currentListName ?? AppConstants.Texts.newListSheetPlaceholderText,
+                        .modifier(TextFieldPlaceHolderTextModifier(placeholder: listNewName ?? AppConstants.Texts.newListSheetPlaceholderText,
                                                                    text: $listNewName,
                                                                    placeholderTextColor: .textSecondary, horizontalPadding: 16)
                         )
@@ -38,6 +38,7 @@ struct EditShoppinglistView: View {
                         .focused($isTextFieldFocused)
                         .padding(.vertical, 11)
                         .autocorrectionDisabled(true)
+                        .tint(.textSecondary)
                         .onChange(of: listNewName){
                             if listNewName.count > 70 {
                                        listNewName = String(listNewName.prefix(70))
@@ -50,6 +51,7 @@ struct EditShoppinglistView: View {
                     if !listNewName.isEmpty {
                         Button(action: {
                             listNewName = ""
+                            
                         }) {
                             Image(systemName: AppConstants.SymbolsName.xmarkCircleFill)
                                 .foregroundColor(.extraTintSecondary)

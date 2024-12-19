@@ -165,10 +165,13 @@ struct ShoplistsScreen: View {
                     .background(.backgroundSecondary)
                     .cornerRadius(8)
                     .padding(.trailing, 16)
+                    .tint(.textSecondary)
                 
                 if !searchText.isEmpty {
                     Button(action: {
                         searchText = ""
+                        viewModel.fetchLists()
+                        
                     }) {
                         Image(systemName: AppConstants.SymbolsName.xmarkCircleFill)
                             .foregroundColor(.extraTintSecondary)

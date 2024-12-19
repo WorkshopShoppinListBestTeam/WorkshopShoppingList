@@ -178,6 +178,15 @@ struct AppConstants {
         static let appsIPad = "apps.ipad"
         static let star = "star"
         static let eyebrow = "eyebrow"
+        static let dog = "dog"
+        static let desktop = "desktopcomputer"
+        static let brush = "paintbrush"
+        static let cabinet = "cabinet"
+        static let bed = "bed.double"
+        static let smile = "face.smiling"
+        static let basket = "basket"
+        
+        
     }
 
     
