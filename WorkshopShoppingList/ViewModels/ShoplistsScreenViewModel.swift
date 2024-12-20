@@ -6,9 +6,11 @@
 //
 
 import Foundation
+
 import Combine
 
 final class ShoplistsScreenViewModel: ObservableObject {
+
     @Published private(set) var shoppingLists: [ShoppingList] = []
     private let coreDataService = CoreDataService.shared
     
@@ -31,6 +33,7 @@ final class ShoplistsScreenViewModel: ObservableObject {
         fetchLists()
     }
     
+
     func renameList(currentName: String, newName: String) {
         guard !newName.isEmpty, !shoppinglistAlreadyExists(newName) else { return }
         
@@ -61,4 +64,6 @@ final class ShoplistsScreenViewModel: ObservableObject {
         }
         fetchLists()
     }
+
+
 }
