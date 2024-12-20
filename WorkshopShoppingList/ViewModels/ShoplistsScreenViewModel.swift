@@ -7,10 +7,10 @@
 
 import Foundation
 
-import Foundation
 import Combine
 
-class ShoplistsScreenViewModel: ObservableObject {
+final class ShoplistsScreenViewModel: ObservableObject {
+
     @Published private(set) var shoppingLists: [ShoppingList] = []
     private let coreDataService = CoreDataService.shared
     
@@ -33,14 +33,37 @@ class ShoplistsScreenViewModel: ObservableObject {
         fetchLists()
     }
     
-    func renameList(_ shoppingList: ShoppingList, newName: String) {
-        guard !newName.isEmpty else { return }
-        coreDataService.renameShoppingList(shoppingList, newName: newName)
-        fetchLists()
+
+    func renameList(currentName: String, newName: String) {
+        guard !newName.isEmpty, !shoppinglistAlreadyExists(newName) else { return }
+        
+        if let shoppingList = shoppingLists.first(where: { $0.name == currentName }) {
+            coreDataService.renameShoppingList(shoppingList, newName: newName)
+            fetchLists()
+        }
     }
-    
+
     func shoppinglistAlreadyExists(_ name: String) -> Bool {
         return shoppingLists.contains(where: { $0.name == name })
     }
     
+    func duplicateList(_ shoppingList: ShoppingList) {
+        coreDataService.duplicateShoppingList(shoppingList)
+        fetchLists()
+    }
+    
+    func filteringShoppingLists(for query: String) {
+        fetchLists()
+        guard !query.isEmpty else { return }
+        shoppingLists =  shoppingLists.filter { $0.name?.localizedCaseInsensitiveContains(query) == true }
+    }
+    
+    func removeAll(){
+        for shoppingList in shoppingLists {
+            coreDataService.deleteShoppingList(shoppingList)
+        }
+        fetchLists()
+    }
+
+
 }

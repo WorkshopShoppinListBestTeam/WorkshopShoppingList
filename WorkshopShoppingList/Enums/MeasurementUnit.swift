@@ -8,9 +8,12 @@
 import Foundation
 
 enum MeasurementUnit: String, CaseIterable {
-    case pieces = "Шт."
-    case kilograms = "Кг."
-    case liters = "Лт."
-    case bottles = "Бут."
-    case packages = "Уп."
+    case packages = "пач"
+    case bottles = "бут"
+    case packs = "уп"
+    case mililitres = "мл"
+    case liters = "л"
+    case gramms = "г"
+    case kilograms = "кг"
+    case pieces = "шт"
 }

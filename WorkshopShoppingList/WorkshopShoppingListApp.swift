@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct WorkshopShoppingListApp: App {
+    @AppStorage("appearance") private var appearance: Appearance = .light
+    let coreDataService = CoreDataService.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView()
+                .preferredColorScheme(appearance.colorScheme)
+                .onAppear{
+                    coreDataService.syncWithICloudOnStartup()
+                }
         }
     }
 }
