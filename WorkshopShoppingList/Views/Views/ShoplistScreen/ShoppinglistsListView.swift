@@ -60,7 +60,6 @@ struct ShoppinglistsListView: View {
     
     ]
 
-    
     var body: some View {
         
         List{
@@ -99,7 +98,7 @@ struct ShoppinglistsListView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 0.33)
                 )
-                .listRowBackground(Color.clear)
+                
                 .contextMenu {
                     Button(action: {
                         selectedListName = list.name
@@ -138,6 +137,7 @@ struct ShoppinglistsListView: View {
                     .tint(Color("ExtraTintSecondary"))
                 }
             }
+            .listRowBackground(Color.clear)
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
 
