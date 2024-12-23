@@ -146,7 +146,7 @@ struct ShoppinglistsListView: View {
         .listRowSpacing(8)
         .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)
-        .background(Color.clear)
+        .background(.backgroundPrimary)
         .sheet(isPresented: $showSheet) {
             EmojiGridSheet(emojis: emojis){ emoji in
                 if let item = selectedItem {
