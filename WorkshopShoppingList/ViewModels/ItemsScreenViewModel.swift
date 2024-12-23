@@ -83,9 +83,3 @@ final class ItemsScreenViewModel: ObservableObject {
         fetchItems()
     }
 }
-
-extension ShoppingList {
-    var itemsArray: [Item] {
-        (items?.allObjects as? [Item]) ?? []
-    }
-}

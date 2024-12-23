@@ -111,7 +111,7 @@ struct NewItemtView: View {
                                         horizontalPadding: 16)
                                     )
                                     .frame(alignment: .center)
-                                    .frame(width: 80)
+                                    .frame(width: 66)
                                     .keyboardType(.numberPad)
                                     .padding(.vertical, 12)
                                     .padding(.leading, 16)
@@ -143,7 +143,7 @@ struct NewItemtView: View {
                             .cornerRadius(8)
                             .padding(.trailing, 16)
                         }
-                        .frame(width: 224)
+                        .frame(width: 200)
                         .background(.backgroundSecondary)
                         .cornerRadius(10)
                     }
